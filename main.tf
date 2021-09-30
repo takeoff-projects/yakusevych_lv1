@@ -25,12 +25,6 @@ resource "google_project_service" "firestore" {
   disable_on_destroy = false
 }
 
-resource "google_firestore_document" "pet_1" {
-  collection  = "Pet"
-  document_id = "pet-1"
-  fields      = "{\"petname\":{\"stringValue\":\"Loki\"}, \"owner\":{\"stringValue\":\"James\"}, \"likes\":{\"integerValue\":\"180\"}, \"image\":{\"stringValue\":\"https://i.pinimg.com/originals/73/35/45/733545a67e5fb354181a6516a2e410ba.jpg\"}}"
-}
-
 resource "google_cloud_run_service" "run_service" {
   name = "nastia-go-pets"
   location = var.region
@@ -66,6 +60,13 @@ resource "google_cloud_run_service_iam_member" "run_all_users" {
   location = google_cloud_run_service.run_service.location
   role     = "roles/run.invoker"
   member   = "allUsers"
+}
+
+# set up database
+resource "google_firestore_document" "pet_1" {
+  collection  = "Pet"
+  document_id = "pet-1"
+  fields      = "{\"petname\":{\"stringValue\":\"Loki\"}, \"owner\":{\"stringValue\":\"James\"}, \"likes\":{\"integerValue\":\"180\"}, \"image\":{\"stringValue\":\"https://i.pinimg.com/originals/73/35/45/733545a67e5fb354181a6516a2e410ba.jpg\"}}"
 }
 
 # Display the service URL
