@@ -4,7 +4,6 @@
 *.dll
 *.so
 *.dylib
-roi-takeoff-user50.json
 
 # Test binary, built with `go test -c`
 *.test
@@ -15,7 +14,6 @@ roi-takeoff-user50.json
 # Dependency directories (remove the comment below to include it)
 vendor/
 tmp/
-
 
 .idea
 .terraform.*
